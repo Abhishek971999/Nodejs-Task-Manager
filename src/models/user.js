@@ -49,6 +49,9 @@ const userSchema = new mongoose.Schema({
       },
     },
   ],
+  avatar: {
+    type: Buffer,
+  },
 });
 
 userSchema.virtual('tasks', {
@@ -61,6 +64,7 @@ userSchema.methods.toJSON = function () {
   const user = this;
   const userObject = user.toObject();
   delete userObject.password;
+  delete userObject.avatar;
   delete userObject.tokens;
   return userObject;
 };
